@@ -49,18 +49,55 @@
 
 # print(len(s))
 
-import sys
+# import sys
 
-n = int(sys.stdin.readline())
-max = -sys.maxsize
-sum = 0
-li = list(map(int,sys.stdin.readline().split()))
+# n = int(sys.stdin.readline())
+# max = -sys.maxsize
+# sum = 0
+# li = list(map(int,sys.stdin.readline().split()))
 
-for i in range(n):
-  if max < li[i]:
-    max = li[i]
+# for i in range(n):
+#   if max < li[i]:
+#     max = li[i]
 
-for i in range(n):
-  sum = sum + li[i]*100/max
-print(sum)
-print(sum/n);
+# for i in range(n):
+#   sum = sum + li[i]*100/max
+# print(sum)
+# print(sum/n);
+
+
+# import sys
+
+# count = 0
+
+# n = int(input())
+# esum = []
+
+# for i in range(n):
+#   li = list(sys.stdin.readline())
+#   count = 0
+#   sum = 0
+#   for j in range(len(li)):
+#     if li[j] == 'O':
+#       count = count +1
+#     else :
+#       count  = 0
+#     sum = sum + count
+#   esum.append(sum)
+  
+# for i in range(len(esum)):
+#   print(esum[i])
+
+n = int(input())
+
+for _ in range(n):
+    nums = list(map(int, input().split()))
+    avg = sum(nums[1:])/nums[0]  # 평균을 구함 (nums[0]: 학생수, nums[1:] 점수)
+    cnt = 0
+    for score in nums[1:]:
+        if score > avg:
+            cnt += 1  # 평균 이상인 학생 수
+    rate = cnt/nums[0] *100
+    print(f'{rate:.3f}%')
+
+    
