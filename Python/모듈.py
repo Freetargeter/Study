@@ -29,3 +29,11 @@ class Math:
 def add(a, b):
   return a+b
 
+
+#sys.path.append("경로/폴더명")
+#import 모둘명
+
+# PYTHONPATH 환경변수 사용하기
+# set PYTHONPATH=경로
+# import (이 경로에 있는 모듈)
+
