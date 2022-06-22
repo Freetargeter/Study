@@ -29,58 +29,52 @@
 
 # # 1012 유기농 배추
 
-# n = int(input())
-# result = list()
+import sys
+sys.setrecursionlimit(10000)
 
-# for i in range(n):
-#   k = list(map(int,input().split()))
-#   matrix = list()
-#   for i in range(k[1]):
-#     matrix.append([0]*k[0])
-#   for i in range(k[2]):
-#     q = list(map(int,input().split()))
-#     matrix[q[1]][q[0]] = 1
-  
-#   for i in range(k[1]):
-#     for j in range(k[0]):
-#       if matrix[i][j] == 1:
-#         matrix[i][j] == 2
-#         i == 0 j == 0
-#         i == 0
-#         j == 0
-#         i == k[1] j == k[0]
-#         i == k[1]
-#         j == k[0]
-#         bool = matrix[i+1][j] == 1 or matrix[i-1][j] == 1 or matrix[i][j-1] == 1 or matrix[i][j+1] == 1
-#         while 
-        
-  
-  
 
-# 1074 도미노
+def dfs(x, y):
+    dx = [1, -1, 0, 0]
+    dy = [0, 0, 1, -1]
+    for i in range(4):
+        nx = x + dx[i]
+        ny = y + dy[i]
+        if (0 <= nx < N) and (0 <= ny < M):
+            if matrix[nx][ny] == 1:
+                matrix[nx][ny] = -1
+                dfs(nx, ny)
+
+T = int(input())
+for _ in range(T):
+    M, N, K = map(int, input().split())
+    matrix = [[0]*M for _ in range(N)]
+    cnt = 0
+    for _ in range(K):
+        m, n = map(int, input().split())
+        matrix[n][m] = 1
+    for i in range(N):
+        for j in range(M):
+            if matrix[i][j] > 0:
+                dfs(i, j)
+                cnt += 1
+
+    print(cnt)
+
+# 1074 Z
 
 [N, r, c] = list(map(int,input().split()))
 result = 0
 k = 1
+
 while True:
-  if r//2 == 0:
-    if r == 0 and c == 0:
-      pass
-    elif r == 0 and c == 1:
-      result = result + 1
-    elif r == 1 and c == 0:
-      result = result + 2
-    elif r == 1 and c == 1:
-      result = result + 3  
+  if r == 0 and c == 0:
     break
-  if r//2 > 2**(N-k): 
-    result = result + 2**(N-k)
-  if c//2 > 2**(N-k): 
-    result = result + 2**(N-k-1)
-  r = r % 2**(N-1)
-  c = c % 2**(N-1)
+  if r > 2**(N-k)-1: 
+    result = result + (2**(N-k))**2*2
+  if c > 2**(N-k)-1: 
+    result = result + (2**(N-k))**2
+  r = r % 2**(N-k)
+  c = c % 2**(N-k)
   k = k + 1
   
 print(result)
-    
-  
